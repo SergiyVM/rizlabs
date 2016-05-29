@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic" />
+
+<title>Калькулятор</title>
+</head>
+<body>
+
+	<form class="calc" action="Calc" method="post">
+		<input type="text" id="num1" name="num1" />
+		<select id="operation" name="operation">
+			<option value="add">+</option>
+			<option value="sub">-</option>
+			<option value="mul">*</option>
+			<option value="div">/</option>
+		</select>
+		<input type="text" id="num2" name="num2" />
+		
+		<input id="calculateThis" name="calculateThis" type="submit" value="Підрахувати" />
+	</form>
+	
+	<h2 id="result">Введіть дані у форму вище.</h2>
+	
+	<script type="text/javascript">
+	$("#calculateThis").click(function (event) {
+		event.preventDefault();
+		$.ajax({
+			url: "Calc",
+			method: "post",
+			data: {
+				n1: $("#num1").val(),
+				n2: $("#num2").val(),
+				op: $("#operation").val()
+			}
+		}).done( function (data){
+			$("#result").html(data);
+		});});
+	</script>
+	
+	<footer>
+	Лабораторна робота №1
+	студента групи ПІ-13-1 
+	Москаленка Сергія Володимировича
+	</footer>
+
+</body>
+</html>
